@@ -150,8 +150,5 @@ app.use((err: Error, _: Request, res: Response, _next: NextFunction) => {
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
-// Set port and start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Export the Express app for Vercel
+export default app;
