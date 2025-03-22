@@ -13,7 +13,9 @@
   "scripts": {
     "start": "npx prisma generate && node src/server.ts",
     "dev": "nodemon src/server.ts",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "build": "prisma generate && tsc",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
