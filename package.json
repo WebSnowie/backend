@@ -11,7 +11,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.ts && prisma generate",
+    "start": "npx prisma generate && node src/server.ts",
     "dev": "nodemon src/server.ts",
     "prisma:generate": "prisma generate"
   },
