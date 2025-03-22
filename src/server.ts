@@ -8,7 +8,14 @@ dotenv.config();
 const app: Express = express();
 
 // Middleware
-app.use(cors());
+// Update this in your backend code
+app.use(cors({
+  origin: ['http://localhost:8081', 'your-production-frontend-url'],
+  methods: ['GET', 'POST'],
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
