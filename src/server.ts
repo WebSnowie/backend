@@ -10,8 +10,18 @@ const app: Express = express();
 // Middleware
 // Update this in your backend code
 app.use(cors({
-  origin: ['http://localhost:8081', 'your-production-frontend-url'],
-  methods: ['GET', 'POST'],
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl requests)
+    if(!origin) return callback(null, true);
+    // Allow specific origins
+    const allowedOrigins = ['http://localhost:8081', 'http://localhost:3000', 'your-actual-production-url'];
+    if(allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
   preflightContinue: false,
   optionsSuccessStatus: 204
